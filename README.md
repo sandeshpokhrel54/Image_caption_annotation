@@ -5,3 +5,6 @@
 
 ### Demo image
 ![Medical image annotation](https://github.com/sandeshpokhrel54/Image_caption_annotation/blob/main/demo.jpeg)
+
+
+#### Developed at Multi Modal Learning Lab, NAAMII,Nepal for clinicians in vision language annotation under Assistant Professor Binod Bhattarai, PhD. University of Aberdeen.
