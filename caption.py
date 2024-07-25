@@ -4,6 +4,7 @@ import json
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QHBoxLayout, QWidget, QFileDialog, QTextEdit, QPushButton
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
+import shutil
 
 class LabelingWindow(QMainWindow):
     def __init__(self):
@@ -39,7 +40,9 @@ class LabelingWindow(QMainWindow):
         self.layout.addLayout(self.button_layout)
 
         self.image_dir = None
+        self.json_file_old = None
         self.json_file = None
+        self.changed_files = set()
         self.captions = {}
         self.load_data()
         self.image_names = list(self.captions.keys())
@@ -47,7 +50,10 @@ class LabelingWindow(QMainWindow):
 
     def load_data(self):
         self.image_dir = QFileDialog.getExistingDirectory(self, "Select Image Directory")
-        self.json_file = QFileDialog.getOpenFileName(self, "Select JSON File", filter="JSON Files (*.json)")[0]
+        self.json_file_old = QFileDialog.getOpenFileName(self, "Select JSON File", filter="JSON Files (*.json)")[0]
+        # print(type(self.json_file))
+        self.json_file = str( "./" + str(self.json_file_old.split('/')[-1].split('.')[0]) +'_edited.json')
+        shutil.copy(self.json_file_old, self.json_file)
 
         if self.image_dir and self.json_file:
             with open(self.json_file, 'r') as f:
@@ -79,12 +85,27 @@ class LabelingWindow(QMainWindow):
         # save_file = QFileDialog.getSaveFileName(self, "Save JSON File", filter="JSON Files (*.json)")[0]
         save_file =  self.json_file
         if save_file:
-            current_caption = self.caption_editor.toPlainText()
+            current_caption = self.caption_editor.toPlainText() #get caption
             current_image_name = self.image_names[self.current_index]
+            
+            #check if changed
+            if (current_caption != self.captions[current_image_name]):
+                self.changed_files.add(current_image_name)
+            
+            #set caption
             self.captions[current_image_name] = current_caption
-
+            
             with open(save_file, 'w') as f:
                 json.dump(self.captions, f, indent=4)
+
+    def closeEvent(self, event):
+        self.on_exit()
+        event.accept()
+
+    def on_exit(self):
+        # print("closing")
+        print("Files changed", self.changed_files)
+        print("New json file saved at: ", self.json_file)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
