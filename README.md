@@ -14,6 +14,9 @@ cd Image_caption_annotation
 pip install -r requirements.txt
 python caption.py
 ```
+Then, you will be prompted to select the image folder and json file of a class.
+![Select Image Folder](https://github.com/sandeshpokhrel54/Image_caption_annotation/blob/main/select_image_class.png)
+![Select Json File](https://github.com/sandeshpokhrel54/Image_caption_annotation/blob/main/select_json.png)
 
 
 #### Developed at Multi Modal Learning Lab, NAAMII,Nepal for clinicians in vision language annotation under Assistant Professor Binod Bhattarai, PhD. University of Aberdeen.
