@@ -4,7 +4,7 @@
 - Selects images from a user-selected directory.
 
 ### Demo image
-![Medical image annotation](https://github.com/sandeshpokhrel54/Image_caption_annotation/blob/main/demo.jpeg)
+![Medical image annotation](https://github.com/sandeshpokhrel54/Image_caption_annotation/blob/main/demo1.jpeg)
 
 ### Usage
 To run the software, simply do the following:
