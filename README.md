@@ -16,7 +16,7 @@ python caption.py
 ```
 Then, you will be prompted to select the image folder and json file of a class.
 <br>
--First Select the Image Folder
+- First Select the Image Folder
 <br>
 <img src="https://github.com/sandeshpokhrel54/Image_caption_annotation/blob/main/select_image_class.png" width="600" alt="Select Image Folder">
 
